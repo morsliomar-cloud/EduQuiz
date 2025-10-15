@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="EduQuiz" default="war" basedir=".">
-  <property name="src.dir" value="src/main/java"/>
-  <property name="webapp.dir" value="src/main/webapp"/>
-  <property name="res.dir" value="src/main/resources"/>
-  <property name="build.dir" value="build"/>
-  <property name="classes.dir" value="${build.dir}/classes"/>
-  <property name="war.name" value="EduQuiz.war"/>
-  <property name="lib.dir" value="${webapp.dir}/WEB-INF/lib"/>
+  <!-- Paths -->
+  <property name="src.dir"        value="src/main/java"/>
+  <property name="webapp.dir"     value="src/main/webapp"/>
+  <property name="res.dir"        value="src/main/resources"/>
+  <property name="build.dir"      value="build"/>
+  <property name="classes.dir"    value="${build.dir}/classes"/>
+  <property name="war.name"       value="EduQuiz.war"/>
+
+  <!-- Runtime libs that MUST be packaged in the WAR (json, jdbc driver, jstl, hibernate, ...). -->
+  <property name="lib.dir"        value="${webapp.dir}/WEB-INF/lib"/>
+
+  <!-- Compile-only libs (provided by the container at runtime, e.g. jakarta.servlet-api). -->
+  <property name="compile.lib.dir" value="lib/compile-only"/>
 
   <target name="clean">
     <delete dir="${build.dir}"/>
@@ -16,29 +22,29 @@
     <mkdir dir="${classes.dir}"/>
   </target>
 
+  <!-- Classpath used to compile -->
   <path id="compile.classpath">
+    <!-- API jars for compilation only (NOT packaged): jakarta.servlet-api, (optional) jsp/el apis -->
+    <fileset dir="${compile.lib.dir}">
+      <include name="**/*.jar"/>
+    </fileset>
+    <!-- Runtime jars that WILL be packaged into the WAR -->
     <fileset dir="${lib.dir}">
       <include name="**/*.jar"/>
     </fileset>
   </path>
 
   <target name="compile" depends="prepare" description="Compile Java sources">
-    <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false" debug="true" source="11" target="11">
+    <javac srcdir="${src.dir}"
+           destdir="${classes.dir}"
+           includeantruntime="false"
+           debug="true"
+           source="11"
+           target="11"
+           encoding="UTF-8">
       <classpath refid="compile.classpath"/>
+      <!-- Uncomment if you want extra warnings -->
+      <!-- <compilerarg value="-Xlint:unchecked"/> -->
     </javac>
 
-    <!-- Copy resources (properties, META-INF/persistence.xml, etc.) -->
-    <copy todir="${classes.dir}">
-      <fileset dir="${res.dir}"/>
-    </copy>
-  </target>
-
-  <target name="war" depends="compile" description="Package WAR">
-    <mkdir dir="${build.dir}"/>
-    <war destfile="${build.dir}/${war.name}" webxml="">
-      <classes dir="${classes.dir}"/>
-      <lib dir="${lib.dir}"/>
-      <fileset dir="${webapp.dir}"/>
-    </war>
-  </target>
-</project>
+    <!-- Copy resources (properties, META-INF
