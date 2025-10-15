@@ -47,4 +47,18 @@
       <!-- <compilerarg value="-Xlint:unchecked"/> -->
     </javac>
 
-    <!-- Copy resources (properties, META-INF
+    <!-- Copy resources (properties, META-INF/persistence.xml, etc.) -->
+    <copy todir="${classes.dir}">
+      <fileset dir="${res.dir}"/>
+    </copy>
+  </target>
+
+  <target name="war" depends="compile" description="Package WAR">
+    <mkdir dir="${build.dir}"/>
+    <war destfile="${build.dir}/${war.name}">
+      <classes dir="${classes.dir}"/>
+      <lib     dir="${lib.dir}"/>
+      <fileset dir="${webapp.dir}"/>
+    </war>
+  </target>
+</project>
