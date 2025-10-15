@@ -1,6 +1,6 @@
 # EduQuiz — Java EE MVC Online Quiz Platform
 
-**EduQuiz** is a Java EE learning project that demonstrates a clean MVC architecture for an online quiz platform. Users can take quizzes, see scores immediately, and track progress over time. The code showcases **Servlets**, **JSP (+Bootstrap/AJAX)**, **JPA/Hibernate (or plain JDBC)**, and a **MySQL** database. No Maven and no `web.xml` are required; Servlets are registered with annotations and configuration is done via properties.
+**EduQuiz** is a Java EE learning project that demonstrates a clean MVC architecture for an online quiz platform. Users can take quizzes, see scores immediately, and track progress over time. The code showcases **Servlets**, **JSP (+Bootstrap/AJAX)**, **JPA/Hibernate (or plain JDBC)**, and a **MySQL** database.
 
 ---
 
@@ -9,20 +9,18 @@
 - Quiz play: single and multi-choice questions, instant scoring
 - Leaderboard and personal score history
 - Categories and difficulty levels
-- Timed quizzes with a JS countdown
 - Optional REST endpoints (e.g. `/api/quizzes`) to power SPAs or mobile apps
 - Authentication (username/password with BCrypt) and simple Admin panel
-- Follows **MVC**: JSP (View), Servlets/Controllers (Controller), JPA/JDBC (Model)
-
+- Open Trivia API Integration (browsing quizzes not already set in the local data base and for the admin add quizzes permentally to the local db)
 ## 🧱 Tech Stack
 
-- **Backend:** Java EE (Servlet 3.x w/ `@WebServlet`), JSP, JPA/Hibernate (or DAO + JDBC)
-- **Database:** MySQL (via **phpMyAdmin** for import/management)
-- **Server:** Apache Tomcat 9/10/10.1
+- **Backend:** Java EE (Servlet w/ `@WebServlet`), JSP, JPA/Hibernate (or DAO + JDBC)
+- **Database:** MySQL
+- **Server:** Apache Tomcat
 - **Frontend:** JSP, Bootstrap, vanilla JS/AJAX
-- **Build:** **Ant** (no Maven), or build from IDE (Eclipse/NetBeans/IntelliJ)
+- **Build:** IDE (Eclipse)
 - **CI:** GitHub Actions
-- **Demo:** GitHub Pages (`/docs` folder)
+- **Demo:** GitHub Pages
 
 ---
 
