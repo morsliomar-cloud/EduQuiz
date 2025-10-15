@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="EduQuiz" default="war" basedir=".">
-  <!-- Paths -->
-  <property name="src.dir"        value="src/main/java"/>
-  <property name="webapp.dir"     value="src/main/webapp"/>
-  <property name="res.dir"        value="src/main/resources"/>
+  <!-- Point this to the nested Eclipse project folder -->
+  <property name="base.dir" value="EduQuiz"/>
+
+  <!-- Paths (Maven-like layout inside the nested folder) -->
+  <property name="src.dir"        value="${base.dir}/src/main/java"/>
+  <property name="webapp.dir"     value="${base.dir}/src/main/webapp"/>
+  <!-- If your JSPs are under WebContent instead, use this line and delete the one above: -->
+  <!-- <property name="webapp.dir"     value="${base.dir}/WebContent"/> -->
+  <property name="res.dir"        value="${base.dir}/src/main/resources"/>
+
   <property name="build.dir"      value="build"/>
   <property name="classes.dir"    value="${build.dir}/classes"/>
   <property name="war.name"       value="EduQuiz.war"/>
 
-  <!-- Runtime libs that MUST be packaged in the WAR (json, jdbc driver, jstl, hibernate, ...). -->
+  <!-- Runtime libs packaged into the WAR (hibernate, mysql-connector, jstl, etc.) -->
   <property name="lib.dir"        value="${webapp.dir}/WEB-INF/lib"/>
 
-  <!-- Compile-only libs (provided by the container at runtime, e.g. jakarta.servlet-api). -->
-  <property name="compile.lib.dir" value="lib/compile-only"/>
+  <!-- Compile-only libs (provided by container at runtime, e.g. servlet/jsp api) -->
+  <property name="compile.lib.dir" value="${base.dir}/lib/compile-only"/>
 
   <target name="clean">
     <delete dir="${build.dir}"/>
@@ -24,35 +30,37 @@
 
   <!-- Classpath used to compile -->
   <path id="compile.classpath">
-    <!-- API jars for compilation only (NOT packaged): jakarta.servlet-api, (optional) jsp/el apis -->
-    <fileset dir="${compile.lib.dir}">
+    <!-- API jars for compilation only (NOT packaged): javax/jakarta servlet/jsp api, etc. -->
+    <fileset dir="${compile.lib.dir}" erroronmissingdir="false">
       <include name="**/*.jar"/>
     </fileset>
+
     <!-- Runtime jars that WILL be packaged into the WAR -->
-    <fileset dir="${lib.dir}">
+    <fileset dir="${lib.dir}" erroronmissingdir="false">
       <include name="**/*.jar"/>
     </fileset>
   </path>
 
   <target name="compile" depends="prepare" description="Compile Java sources">
-<javac srcdir="${src.dir}"
-       destdir="${classes.dir}"
-       includeantruntime="false"
-       debug="true"
-       source="17"
-       target="17"
-       encoding="UTF-8">
-  <classpath refid="compile.classpath"/>
-</javac>
+    <javac srcdir="${src.dir}"
+           destdir="${classes.dir}"
+           includeantruntime="false"
+           debug="true"
+           source="17"
+           target="17"
+           encoding="UTF-8">
+      <classpath refid="compile.classpath"/>
+    </javac>
 
     <!-- Copy resources (properties, META-INF/persistence.xml, etc.) -->
     <copy todir="${classes.dir}">
-      <fileset dir="${res.dir}"/>
+      <fileset dir="${res.dir}" erroronmissingdir="false"/>
     </copy>
   </target>
 
   <target name="war" depends="compile" description="Package WAR">
     <mkdir dir="${build.dir}"/>
+    <!-- No web.xml needed; using @WebServlet annotations -->
     <war destfile="${build.dir}/${war.name}">
       <classes dir="${classes.dir}"/>
       <lib     dir="${lib.dir}"/>
