@@ -1,0 +1,33 @@
+
+# Compiled class files
+*.class
+*.war
+*.ear
+*.jar
+
+# Build output
+/build/
+/target/
+/dist/
+
+# IDEs
+.classpath
+.project
+.settings/
+.idea/
+*.iml
+out/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Node (if used for frontend assets)
+node_modules/
+
+# Secrets
+*.env
+src/main/resources/application.properties

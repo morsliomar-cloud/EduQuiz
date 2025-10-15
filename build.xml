@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="EduQuiz" default="war" basedir=".">
+  <property name="src.dir" value="src/main/java"/>
+  <property name="webapp.dir" value="src/main/webapp"/>
+  <property name="res.dir" value="src/main/resources"/>
+  <property name="build.dir" value="build"/>
+  <property name="classes.dir" value="${build.dir}/classes"/>
+  <property name="war.name" value="EduQuiz.war"/>
+  <property name="lib.dir" value="${webapp.dir}/WEB-INF/lib"/>
+
+  <target name="clean">
+    <delete dir="${build.dir}"/>
+  </target>
+
+  <target name="prepare">
+    <mkdir dir="${classes.dir}"/>
+  </target>
+
+  <path id="compile.classpath">
+    <fileset dir="${lib.dir}">
+      <include name="**/*.jar"/>
+    </fileset>
+  </path>
+
+  <target name="compile" depends="prepare" description="Compile Java sources">
+    <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false" debug="true" source="11" target="11">
+      <classpath refid="compile.classpath"/>
+    </javac>
+
+    <!-- Copy resources (properties, META-INF/persistence.xml, etc.) -->
+    <copy todir="${classes.dir}">
+      <fileset dir="${res.dir}"/>
+    </copy>
+  </target>
+
+  <target name="war" depends="compile" description="Package WAR">
+    <mkdir dir="${build.dir}"/>
+    <war destfile="${build.dir}/${war.name}" webxml="">
+      <classes dir="${classes.dir}"/>
+      <lib dir="${lib.dir}"/>
+      <fileset dir="${webapp.dir}"/>
+    </war>
+  </target>
+</project>
