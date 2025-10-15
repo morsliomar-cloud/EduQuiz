@@ -2,8 +2,6 @@
 
 **EduQuiz** is a Java EE learning project that demonstrates a clean MVC architecture for an online quiz platform. Users can take quizzes, see scores immediately, and track progress over time. The code showcases **Servlets**, **JSP (+Bootstrap/AJAX)**, **JPA/Hibernate (or plain JDBC)**, and a **MySQL** database. No Maven and no `web.xml` are required; Servlets are registered with annotations and configuration is done via properties.
 
-> 🔗 **Live demo (static preview):** GitHub Pages (this repo → **Settings → Pages → Branch: `main`, Folder: `/docs`**) publishes a lightweight, client-side demo at `https://<your-user>.github.io/<repo>/`.> 🟢 **Live backend (optional):** Deploy the Java app to a platform like **Render**, **Railway**, or **Koyeb** (instructions below) and link it from the Pages demo.
-
 ---
 
 ## ✨ Features
