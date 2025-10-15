@@ -7,8 +7,7 @@
   <property name="src.dir"        value="${base.dir}/src/main/java"/>
   <property name="webapp.dir"     value="${base.dir}/src/main/webapp"/>
   <!-- If your JSPs are under WebContent instead, use this line and delete the one above: -->
-  <!-- <property name="webapp.dir"     value="${base.dir}/WebContent"/> -->
-  <property name="res.dir"        value="${base.dir}/src/main/resources"/>
+  <property name="webapp.dir"     value="${base.dir}/WebContent"/>
 
   <property name="build.dir"      value="build"/>
   <property name="classes.dir"    value="${build.dir}/classes"/>
