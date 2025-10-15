@@ -35,17 +35,15 @@
   </path>
 
   <target name="compile" depends="prepare" description="Compile Java sources">
-    <javac srcdir="${src.dir}"
-           destdir="${classes.dir}"
-           includeantruntime="false"
-           debug="true"
-           source="11"
-           target="11"
-           encoding="UTF-8">
-      <classpath refid="compile.classpath"/>
-      <!-- Uncomment if you want extra warnings -->
-      <!-- <compilerarg value="-Xlint:unchecked"/> -->
-    </javac>
+<javac srcdir="${src.dir}"
+       destdir="${classes.dir}"
+       includeantruntime="false"
+       debug="true"
+       source="17"
+       target="17"
+       encoding="UTF-8">
+  <classpath refid="compile.classpath"/>
+</javac>
 
     <!-- Copy resources (properties, META-INF/persistence.xml, etc.) -->
     <copy todir="${classes.dir}">
