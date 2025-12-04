@@ -9,7 +9,6 @@ A comprehensive Java EE web application designed for creating, managing, and tak
 ## 🌟 Features
 
 ### For Users
-- ✅ User registration and secure authentication
 - ✅ Browse and take interactive quizzes
 - ✅ Real-time score calculation
 - ✅ Detailed quiz results and performance history
@@ -143,44 +142,6 @@ Window → Preferences → Server → Runtime Environments → Add
 Right-click Project → Run on Server → Select Tomcat
 ```
 
-### Option 2: Deploy to Free Cloud Services
-
-#### **Option A: Payara Cloud (Recommended for Java EE)**
-```bash
-# 1. Sign up: https://www.payara.cloud
-# 2. Create MySQL database and note connection details
-# 3. Update DBConnection.java with cloud database credentials
-# 4. Build WAR file: mvn clean package
-# 5. Upload WAR to Payara Cloud console
-```
-
-#### **Option B: Heroku (with Procfile)**
-```bash
-# 1. Sign up: https://www.heroku.com
-# 2. Install Heroku CLI
-# 3. Create Procfile:
-echo "web: java -cp target/classes:target/lib/* Main" > Procfile
-
-# 4. Deploy:
-heroku create your-app-name
-git push heroku main
-```
-
-#### **Option C: AWS Elastic Beanstalk**
-```bash
-# 1. Install AWS CLI & EB CLI
-# 2. Initialize EB:
-eb init -p "Java" my-app
-
-# 3. Create environment:
-eb create my-app-env
-
-# 4. Deploy:
-eb deploy
-```
-
----
-
 ## 🔧 Configuration
 
 ### Database Configuration
@@ -246,27 +207,7 @@ The application integrates with OpenTrivia DB for question importing.
 - **categories**: Quiz categories
 - **quizzes**: Quiz metadata
 - **questions**: Quiz questions
-- **answers**: User quiz responses
 - **scores**: User performance tracking
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! 
-
-### Steps to Contribute
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/YourFeature`
-3. Commit changes: `git commit -m 'Add your feature'`
-4. Push to branch: `git push origin feature/YourFeature`
-5. Open a Pull Request
-
-### Development Guidelines
-- Follow Java naming conventions
-- Write comments for complex logic
-- Test your changes before submitting PR
-- Update README if adding new features
 
 ---
 
@@ -292,39 +233,12 @@ We welcome contributions!
 
 ---
 
-## 📞 Support & Contact
-
-**Questions or Issues?**
-- Open an issue on GitHub Issues
-- Email: your.email@example.com
-- Join our Discord community: [Discord Link]
-
-**Documentation**: [Wiki](../../wiki) | [API Docs](docs/API.md)
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
----
-
 ## 🙏 Acknowledgments
 
 - **OpenTrivia DB**: For providing free trivia data API
 - **Apache Tomcat**: Application server
 - **BCrypt**: Secure password hashing library
 - **Jakarta JSTL**: Server-side templating
-
----
-
-## 📈 Project Statistics
-
-- **Lines of Code**: ~5,000+
-- **Java Classes**: 25+
-- **JSP Pages**: 15+
-- **Database Tables**: 6+
-- **Development Time**: Academic Semester Project
 
 ---
 
@@ -343,14 +257,7 @@ This project demonstrates:
 
 **Last Updated**: December 2, 2025  
 **Version**: 1.0.0  
-**Author**: Your Name  
+**Author**: Morsli Omar
 **Status**: ✅ Production Ready
 
 ---
-
-### Quick Links
-- 🐙 [GitHub Repository](https://github.com/YourUsername/EduQuiz)
-- 📖 [Full Documentation](docs/)
-- 🎯 [Issues & Bugs](../../issues)
-- 💡 [Discussions](../../discussions)
-- 📋 [Pull Requests](../../pulls)
