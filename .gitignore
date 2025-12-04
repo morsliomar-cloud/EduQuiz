@@ -1,0 +1,48 @@
+# Build artifacts
+build/
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.zip
+dist/
+
+# Eclipse IDE
+.metadata/
+.settings/
+.classpath
+.project
+.DS_Store
+*.log
+
+# Dependencies
+*.jar
+lib/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+~*
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Database
+*.db
+*.sqlite
+
+# Environment files (don't commit credentials!)
+.env
+local.properties
+database.properties
+config.local.xml
+
+# Temp files
+temp/
+tmp/
+*.tmp
