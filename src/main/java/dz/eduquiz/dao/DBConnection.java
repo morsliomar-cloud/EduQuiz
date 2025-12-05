@@ -10,18 +10,6 @@ public class DBConnection {
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
-    static {
-        try {
-            // Only load MySQL driver (needed locally)
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.println("JDBC Driver loaded successfully");
-        } catch (ClassNotFoundException e) {
-            System.out.println("Error loading JDBC driver: " + e.getMessage());
-            e.printStackTrace();
-            throw new RuntimeException("Failed to load JDBC driver", e);
-        }
-    }
-
     public static Connection getConnection() {
         try {
             Connection conn = null;
@@ -33,11 +21,14 @@ public class DBConnection {
                 // Running on Render - use PostgreSQL
                 System.out.println("Detected Render environment - using PostgreSQL");
                 
-                // Load PostgreSQL driver only when needed
+                // Load PostgreSQL driver
                 try {
                     Class.forName("org.postgresql.Driver");
+                    System.out.println("PostgreSQL driver loaded successfully");
                 } catch (ClassNotFoundException e) {
-                    System.out.println("PostgreSQL driver not found - this is OK for local development");
+                    System.out.println("ERROR: PostgreSQL driver not found!");
+                    e.printStackTrace();
+                    throw new RuntimeException("PostgreSQL driver not available", e);
                 }
                 
                 // Convert PostgreSQL URL to JDBC format
@@ -52,6 +43,17 @@ public class DBConnection {
             } else {
                 // Running locally - use MySQL
                 System.out.println("Using local MySQL connection");
+                
+                // Load MySQL driver
+                try {
+                    Class.forName("com.mysql.cj.jdbc.Driver");
+                    System.out.println("MySQL driver loaded successfully");
+                } catch (ClassNotFoundException e) {
+                    System.out.println("ERROR: MySQL driver not found!");
+                    e.printStackTrace();
+                    throw new RuntimeException("MySQL driver not available", e);
+                }
+                
                 conn = DriverManager.getConnection(URL, USER, PASSWORD);
             }
             
