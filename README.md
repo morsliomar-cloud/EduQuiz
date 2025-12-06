@@ -4,6 +4,8 @@
 
 A comprehensive Java EE web application designed for creating, managing, and taking quizzes with real-time scoring, user authentication, and detailed performance analytics.
 
+Live demo: https://eduquiz-5n43.onrender.com/home
+
 ---
 
 ## 🌟 Features
