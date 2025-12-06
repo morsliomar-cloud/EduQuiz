@@ -99,8 +99,8 @@ String password = "your_password"; // Your MySQL password
 
 #### 4. Default Credentials
 - **Admin Login**: 
-  - Username: `admin`
-  - Password: `admin123`
+  - Username: `Admin`
+  - Password: `DnG@6RQ,*:Bp@2D`
 - Create additional user accounts via registration page
 
 ---
